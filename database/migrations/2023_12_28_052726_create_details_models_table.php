@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // cannot be null error fix by nullable
         Schema::create('details_models', function (Blueprint $table) {
             $table->id();
             $table->string('RoomNumber');
