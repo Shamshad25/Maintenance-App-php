@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('details_models', function (Blueprint $table) {
             $table->id();
+            $table->string('RoomNumber');
+            $table->string('PaidTo');
+            $table->string('PaidAt');
             $table->timestamps();
         });
     }

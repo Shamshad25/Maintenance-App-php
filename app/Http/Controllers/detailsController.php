@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\detailsModel;
 use Illuminate\Http\Request;
 
 class detailsController extends Controller
@@ -11,7 +12,8 @@ class detailsController extends Controller
      */
     public function index()
     {
-        //
+        $AllDetails = detailsModel::all();
+        return view('showAllDetails')->with('AllDetails',$AllDetails);
     }
 
     /**
