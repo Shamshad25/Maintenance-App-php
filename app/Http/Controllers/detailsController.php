@@ -59,6 +59,10 @@ class detailsController extends Controller
             $details->PaidTo = $request->PaidTo;
             $details->PaidAt = $request->PaidAt;
             $details->save();
+        }else{
+            $details->PaidTo = '';
+            $details->PaidAt = '';
+            $details->save();
         }
         return redirect('details');
     }

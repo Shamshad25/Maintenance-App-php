@@ -91,19 +91,27 @@
 
   <script>
     $('input[type="checkbox"]').on('change',function(e){
-        rm = e.target.parentElement.previousElementSibling.innerText;
-        id = e.target.parentElement.previousElementSibling.querySelector('input[type="hidden"]').value;
+
 
         if(e.target.checked){
+            rm = e.target.parentElement.previousElementSibling.innerText;
+            id = e.target.parentElement.previousElementSibling.querySelector('input[type="hidden"]').value;
+
             $('#myModal').find('form').find('#RoomNumber').attr('value',rm);
             $('#myModal').find('form').attr('action',"details/"+id);
             $('#myModal').modal();
         }else{
-            $('RoomNumber').val('');
-            $('PaidTo').val('');
-            $('PaidAt').val('');
-        }
-    })
+            $('#PaidTo').val('');
+            $('#PaidAt').val('');
+            $('#submit').val('Erase');
+            rm = e.target.parentElement.previousElementSibling.innerText;
+            id = e.target.parentElement.previousElementSibling.querySelector('input[type="hidden"]').value;
+
+            $('#myModal').find('form').find('#RoomNumber').attr('value',rm);
+            $('#myModal').find('form').attr('action',"details/"+id);
+            $('#myModal').modal();
+    }
+})
   </script>
 
 </body>
