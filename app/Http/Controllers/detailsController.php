@@ -53,7 +53,14 @@ class detailsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $details = detailsModel::find($id);
+
+        if($request->PaidTo !== ''){
+            $details->PaidTo = $request->PaidTo;
+            $details->PaidAt = $request->PaidAt;
+            $details->save();
+        }
+        return redirect('details');
     }
 
     /**

@@ -28,7 +28,7 @@
         <tbody>
             @foreach ($AllDetails as $details)
                 <tr>
-                    <td>{{$details->RoomNumber}}</td>
+                    <td>{{$details->RoomNumber}} <input type="hidden" value="{{$details->id}}"></td>
                     <td><input type="checkbox" {{($details->PaidTo) ? 'checked': ''}}></td>
                     <td>{{$details->PaidTo}}</td>
                     <td>{{$details->PaidAt}}</td>
@@ -57,6 +57,8 @@
         <!-- Modal body -->
         <div class="modal-body">
           <form action="" method="POST">
+            @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="">Room Number</label>
                 <input type="text" name="RoomNumber" id="RoomNumber" disabled class="form-control">
@@ -90,9 +92,16 @@
   <script>
     $('input[type="checkbox"]').on('change',function(e){
         rm = e.target.parentElement.previousElementSibling.innerText;
+        id = e.target.parentElement.previousElementSibling.querySelector('input[type="hidden"]').value;
+
         if(e.target.checked){
             $('#myModal').find('form').find('#RoomNumber').attr('value',rm);
+            $('#myModal').find('form').attr('action',"details/"+id);
             $('#myModal').modal();
+        }else{
+            $('RoomNumber').val('');
+            $('PaidTo').val('');
+            $('PaidAt').val('');
         }
     })
   </script>
